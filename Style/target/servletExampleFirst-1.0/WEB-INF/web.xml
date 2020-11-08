@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+                      http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+         version="4.0">
+
+  <servlet>
+    <servlet-name>main</servlet-name>
+    <servlet-class>ru.kpfu.kutyavina.servlets.SimpleServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>main</servlet-name>
+    <url-pattern></url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>SignIn</servlet-name>
+    <servlet-class>ru.kpfu.kutyavina.servlets.SignInServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>SignIn</servlet-name>
+    <url-pattern>/signin</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>SignUp</servlet-name>
+    <servlet-class>ru.kpfu.kutyavina.servlets.SignUpServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>SignUp</servlet-name>
+    <url-pattern>/signup</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>Profile</servlet-name>
+    <servlet-class>ru.kpfu.kutyavina.servlets.ProfileServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>Profile</servlet-name>
+    <url-pattern>/profile</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>SignOut</servlet-name>
+    <servlet-class>ru.kpfu.kutyavina.servlets.SignOutServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>SignOut</servlet-name>
+    <url-pattern>/signout</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>Title</servlet-name>
+    <servlet-class>ru.kpfu.kutyavina.servlets.ProductServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>Title</servlet-name>
+    <url-pattern>/title</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>Add</servlet-name>
+    <servlet-class>ru.kpfu.kutyavina.servlets.AddServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>Add</servlet-name>
+    <url-pattern>/intocap</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>Capsule</servlet-name>
+    <servlet-class>ru.kpfu.kutyavina.servlets.CapsuleServlet</servlet-class>
+  </servlet>av
+
+  <servlet-mapping>
+    <servlet-name>Capsule</servlet-name>
+    <url-pattern>/capsule</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>About</servlet-name>
+    <servlet-class>ru.kpfu.kutyavina.servlets.AboutServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>About</servlet-name>
+    <url-pattern>/about</url-pattern>
+  </servlet-mapping>
+
+  <error-page>
+    <error-code>404</error-code>
+    <location>/error/error404.jsp</location>
+  </error-page>
+
+  <error-page>
+    <error-code>505</error-code>
+    <location>/error/error505.jsp</location>
+  </error-page>
+
+  <error-page>
+    <location>/error/error505.jsp</location>
+  </error-page>
+
+</web-app>

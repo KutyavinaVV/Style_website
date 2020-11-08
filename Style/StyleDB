@@ -1,0 +1,115 @@
+create table "user"
+(
+    id            serial      not null primary key,
+    user_name     varchar(50) not null,
+    email         varchar(70) not null,
+    password_hash integer     not null
+);
+
+create table product
+(
+    id          serial       not null
+            primary key,
+    name        varchar(50)  not null,
+    path        varchar(100) not null,
+    type        varchar(30),
+    link        varchar(200),
+    description varchar(500),
+    composition varchar(200)
+);
+
+create table favorite
+(
+    id      serial not null
+            primary key,
+    user_id integer
+            references "user"(id)
+            on delete cascade,
+    article varchar(100)
+);
+
+create table capsule
+(
+    id      serial  not null
+            primary key,
+    name    varchar(50) default 'capsule'::character varying,
+    user_id integer not null
+            references "user"(id)
+            on update restrict on delete cascade
+);
+
+create table capsule_product
+(
+    id_capsule integer not null
+            references capsule(id) ON DELETE CASCADE,
+    id_product integer not null
+            references product (id) ON DELETE CASCADE,
+    constraint capsule_product_pkey
+        primary key (id_capsule, id_product)
+);
+
+create table appointment
+(
+    id      serial       not null
+            primary key,
+    user_id integer 
+            references "user"(id) ON DELETE CASCADE,
+    date    varchar(12),
+    time    varchar(50)  not null,
+    name    varchar(100) not null
+);
+
+INSERT INTO product (id, name, path, type, link, description, composition) VALUES (1, 'ДЖИНСЫ Z1975 STRAIGHT ACID WASH', '/images/clothes/jeans/Z1975.jpg', 'jeans', 'https://www.zara.com/ru/ru/%D0%B4%D0%B6%D0%B8%D0%BD%D1%81%D1%8B-z1975-straight-acid-wash-p05862175.html?v1=57699650', 'Джинсы с высокой посадкой, пятью карманами, разрывами спереди и застежкой на молнию и металлическую пуговицу.', 'ВНЕШНЯЯ ЧАСТЬ 100% ХЛОПОК');
+INSERT INTO product (id, name, path, type, link, description, composition) VALUES (5, 'Джинсы Balloon с завышенной талией', '/images/clothes/jeans/Balloon.jpg', 'jeans', 'https://shop.mango.com/ru/женская/джинсы-slouchy/джинсы-balloon-с-завышеннои-талиеи_77038258.html', ' Фасон слоучи. Завышенная талия. Шлевки. Пять карманов. Застежка на молнию и пуговицу. Длинный фасон..', '100% ХЛОПОК');
+INSERT INTO product (id, name, path, type, link, description, composition) VALUES (12, 'КУРТКА РУБАШКА', '/images/clothes/outerwear/o5.jpg', 'outerwear', 'рttps://www.pullandbear.com/ru/для-женщин/одежда/пальто-и-куртки-c1030009518p502311836.html?cS=020', 'Куртка рубашечного кроя из искусственной шерсти в клетку. Воротник из искусственной овчины, накладные карманы, передняя застежка на пуговицы, длинные рукава.', 'Наружная часть: 76% ПОЛИЭСТЕР - 17% АКРИЛ - 3% ШЕРСТЬ - 3% ПОЛИАМИД - 1% ВИСКОЗА - 0% ХЛОПОК - 0% Лиоцелл');
+INSERT INTO product (id, name, path, type, link, description, composition) VALUES (2, 'СИНИЕ ДЖИНСЫ ZW PREMIUM 90S FULL LENGTH SERENITY', '/images/clothes/jeans/ZW.jpg', 'jeans', 'https://www.zara.com/ru/ru/%D1%81%D0%B8%D0%BD%D0%B8%D0%B5-%D0%B4%D0%B6%D0%B8%D0%BD%D1%81%D1%8B-zw-premium-90s-full-length-serenity-blue-p06840252.html?v1=58571251', 'The ’90s Full Length in Serenity Blue.', '68% ХЛОПОК, 32% Лиоцелл');
+INSERT INTO product (id, name, path, type, link, description, composition) VALUES (6, 'Джинсы slouchy Regina', '/images/clothes/jeans/Regina.jpg', 'jeans', 'https://shop.mango.com/ru/женская/джинсы-slouchy/джинсы-slouchy-regina_77050561.html', 'Широкий фасон. Длинный фасон. Завышенная талия. Изделие выполнено из хлопка. Шлевки. По бокам два кармана. Сзади два накладных кармана. Застежка на молнию и пуговицу.', ' 100% хлопок');
+INSERT INTO product (id, name, path, type, link, description, composition) VALUES (7, 'Джинсы с завышенной талией Wideleg', '/images/clothes/jeans/Wideleg.jpg', 'jeans', 'https://shop.mango.com/ru/женская/джинсы-wideleg/джинсы-с-завышеннои-талиеи-wideleg_67078264.html', 'Стиль wide leg. Завышенная талия. Прямой крой. Шлевки. По бокам два кармана. Застежка на молнию и пуговицу. Необработанная линия низа с торчащими нитками.', ' 100% хлопок');
+INSERT INTO product (id, name, path, type, link, description, composition) VALUES (8, 'НЕПРОМОКАЕМАЯ СТЕГАНАЯ КУРТКА', '/images/clothes/outerwear/o1.jpg', 'outerwear', 'https://www.zara.com/ru/ru/непромокаемая-стеганая-куртка-p03046230.html?v1=79362458&v2=1549242', 'Куртка с высоким воротником и регулируемым капюшоном на шнурке. Длинные рукава, манжеты. Передние карманы с молниями, застежка на молнию и металлические пуговицы.', 'ВНЕШНЯЯ ЧАСТЬ 100% ПОЛИЭСТЕР ПОДКЛАДКА 100% ПОЛИЭСТЕР НАПОЛНИТЕЛЬ 100% ПОЛИЭСТЕР');
+INSERT INTO product (id, name, path, type, link, description, composition) VALUES (9, '
+КУРТКА В БАЙКЕРСКОМ СТИЛЕ ИЗ ИСКУССТВЕННОЙ КОЖИ', '/images/clothes/outerwear/o2.jpg', 'outerwear', 'https://www.zara.com/ru/ru/куртка-в-байкерском-стиле-из-искусственной-кожи-p03046029.html?v1=71612041', 'Куртка с длинными рукавами и воротником с лацканами. Передние карманы с металлическими молниями, хлястики на плечах. Пояс из того же материала с пряжкой, застежка на металлическую молнию.', 'ОСНОВНАЯ ТКАНЬ 100% ПОЛИЭСТЕР
+ПОКРЫТИЕ 100% ПОЛИУРЕТАН');
+INSERT INTO product (id, name, path, type, link, description, composition) VALUES (10, 'КОРОТКАЯ КУРТКА ИЗ ИСКУССТВЕННОЙ ОВЧИНЫ', '/images/clothes/outerwear/o3.jpg', 'outerwear', 'https://www.zara.com/ru/ru/короткая-куртка-из-искусственной-овчины-p08073257.html?v1=57670016', 'Куртка с длинными рукавами. Воротник с лацканами, потайные карманы спереди и застежка на металлическую молнию.', 'ОСНОВНАЯ ТКАНЬ 100% ПОЛИЭСТЕР
+ДОПОЛНИТЕЛЬНАЯ ТКАНЬ 95% ПОЛИЭСТЕР, 5% ЭЛАСТАН
+ПОДКЛАДКА 100% ПОЛИЭСТЕР');
+INSERT INTO product (id, name, path, type, link, description, composition) VALUES (11, 'СТЕГАНАЯ КУРТКА ИЗ ИСКУССТВЕННОЙ КОЖИ', '/images/clothes/outerwear/o4.jpg', 'outerwear', 'https://www.zara.com/ru/ru/стеганая-куртка-из-искусственной-кожи-p03046222.html?v1=55275667', 'Куртка с высоким воротником и капюшоном. Длинные рукава, передние карманы на молнии. Регулируемый низ на эластичном', 'ОСНОВНАЯ ТКАНЬ 100% ПОЛИЭСТЕР
+ПОКРЫТИЕ 100% ПОЛИУРЕТАН');
+INSERT INTO product (id, name, path, type, link, description, composition) VALUES (13, 'Стеганая куртка «Д. М. У. Тернер»', '/images/clothes/outerwear/o6.jpg', 'outerwear', 'https://www.pullandbear.com/ru/для-женщин/одежда/пальто-и-куртки/стеганая-куртка-«д.-м.-у.-тернер»-c1030009518p502266191.html?cS=020', 'Короткая стеганая куртка с принтом «Д. М. У. Тернер». Воротник-стойка и капюшон.', 'Наружная часть: 100% ПОЛИЭСТЕР Наполнитель: 100% ПОЛИЭСТЕР
+Подкладка: 100% ПОЛИЭСТЕР');
+INSERT INTO product (id, name, path, type, link, description, composition) VALUES (14, 'ОБЪЕМНЫЙ ДВУБОРТНЫЙ ПИДЖАК', '/images/clothes/blazer/blazer1.jpg', 'blazer', 'https://www.zara.com/ru/ru/объемный-двубортный-пиджак-p02753232.html?v1=55424333', '
+ОБЪЕМНЫЙ ДВУБОРТНЫЙ ПИДЖАКПОДРОБНАЯ ИНФОРМАЦИЯ
+4 299 руб.
+РЫЖЕВАТО-КОРИЧНЕВЫЙ - 2753/232
+
+Свободный пиджак с длинными рукавами и воротником с лацканами. Подчеркнутая линия плеч, передние карманы с клапаном. Двубортная застежка на пуговицы', 'ВНЕШНЯЯ ЧАСТЬ 72% ПОЛИЭСТЕР, 22% ВИСКОЗА, 6% ЭЛАСТАН
+ПОДКЛАДКА 100% ПОЛИЭСТЕР');
+INSERT INTO product (id, name, path, type, link, description, composition) VALUES (15, 'ДВУБОРТНЫЙ ПИДЖАК ПРИТАЛЕННОГО КРОЯ', '/images/clothes/blazer/blazer2.jpg', 'blazer', 'https://www.zara.com/ru/ru/двубортный-пиджак-приталенного-кроя-p02436250.html?v1=68153608', 'Пиджак с длинными рукавами и воротником с лацканами. Подчеркнутая линия плеч, передние карманы в рамку. Шлица сзади, двубортная застежка на металлические пуговицы.', 'ВНЕШНЯЯ ЧАСТЬ 59% ХЛОПОК, 38% ПОЛИЭСТЕР, 3% ЭЛАСТАН
+ПОДКЛАДКА 100% АЦЕТАТ');
+INSERT INTO product (id, name, path, type, link, description, composition) VALUES (16, 'Пиджак оверсайз в гусиную лапку', '/images/clothes/blazer/blazer3.jpg', 'blazer', 'https://shop.mango.com/ru/женская/куртки-блеизеры/пиджак-оверсаиз-в-гусиную-лапку_77057623.html', 'В состав входит хлопок. Узор "куриная лапка". Объемный фасон. Структурированный дизайн. Воротник с лацканами. Воротник с лацканами. Длинные рукава с пуговицами на манжетах. Спереди три кармана. Спереди застежка на две пуговицы. Подкладка.', '43% хлопок,28% полиэстер,19% акрил,8% шерсть,1% вискоза,1% полиамид. Подкладка: 55% вискоза,45% полиэстер. Подкладка рука: 100% полиэстер. Кайма: 100% полиэстер');
+INSERT INTO product (id, name, path, type, link, description, composition) VALUES (17, 'Пестрый пиджак', '/images/clothes/blazer/blazer4.jpg', 'blazer', 'https://shop.mango.com/ru/женская/куртки-блеизеры/пестрыи-пиджак_77096323.html', ' В состав входит шерсть. Структурированный дизайн. Воротник с лацканами. Длинные рукава с пуговицами на манжетах. По бокам карманы. Спереди застежка на пуговицу. Подкладка.', '74% полиэстер,20% шерсть,3% вискоза,2% акрил,1% полиамид. Подкладка: 55% полиэстер,45% вискоза. Подкладка рука: 100% полиэстер');
+INSERT INTO product (id, name, path, type, link, description, composition) VALUES (18, 'Структурированный костюмный пиджак', '/images/clothes/blazer/blazer5.jpg', 'blazer', 'https://shop.mango.com/ru/женская/куртки-блеизеры/структурированныи-костюмныи-пиджак_77097883.html', 'Структурированный дизайн. Воротник с лацканами. Длинные рукава с пуговицами на манжетах. По бокам карманы с клапанами. Спереди застежка на пуговицы. Подкладка.', ' 68% полиэстер,30% вискоза,2% эластан. Подкладка: 100% полиэстер');
+INSERT INTO product (id, name, path, type, link, description, composition) VALUES (19, 'Двубортный пиджак с пуговицей', '/images/clothes/blazer/blazer6.jpg', 'blazer', 'https://shop.mango.com/ru/женская/куртки-блеизеры/двубортныи-пиджак-с-пуговицеи_77027891.html', 'ОПИСАНИЕ
+Искусственная кожа. Средняя длина. Воротник с лацканами. Длинные рукава. По бокам карманы. Спереди прорезной карман. Спереди застежка на пуговицы.', '100% полиэстер. Покpытие: 100% полиуретан');
+
+
+INSERT INTO "user" (id, user_name, email, picture, password_hash) VALUES (7, 'Vera', 'verakut9@gmail.com', null, 111722);
+
+INSERT INTO public.appointment (id, user_id, date, time, name) VALUES (8, 7, '2020-11-19', '10:00', 'analysis');
+INSERT INTO public.appointment (id, user_id, date, time, name) VALUES (9, 11, '2020-11-17', '9:00', 'newG');
+INSERT INTO public.appointment (id, user_id, date, time, name) VALUES (14, 7, '2020-11-27', '10:00', 'cons60');
+
+INSERT INTO public.capsule (id, name, user_id) VALUES (5, 'Second', 7);
+INSERT INTO public.capsule (id, name, user_id) VALUES (7, 'new', 3);
+INSERT INTO public.capsule (id, name, user_id) VALUES (6, 'y', 7);
+INSERT INTO public.capsule (id, name, user_id) VALUES (9, 'winter', 7);
+
+INSERT INTO public.capsule_product (id_capsule, id_product) VALUES (6, 7);
+INSERT INTO public.capsule_product (id_capsule, id_product) VALUES (6, 14);
+INSERT INTO public.capsule_product (id_capsule, id_product) VALUES (5, 12);
+INSERT INTO public.capsule_product (id_capsule, id_product) VALUES (5, 1);
+INSERT INTO public.capsule_product (id_capsule, id_product) VALUES (5, 11);
+INSERT INTO public.capsule_product (id_capsule, id_product) VALUES (6, 11);
+INSERT INTO public.capsule_product (id_capsule, id_product) VALUES (6, 5);
+INSERT INTO public.capsule_product (id_capsule, id_product) VALUES (5, 2);
+INSERT INTO public.capsule_product (id_capsule, id_product) VALUES (9, 5);
+
