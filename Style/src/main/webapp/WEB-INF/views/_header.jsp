@@ -17,6 +17,6 @@
     </style>
 
     <script>
-        <%@include file="../JavaSqript/sqript.js"%>
+        <%@include file="../JavaScript/script.js"%>
     </script>
 </head>

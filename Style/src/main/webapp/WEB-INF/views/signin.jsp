@@ -22,11 +22,11 @@
                 <small class="form-text text-muted"> <a href="${pageContext.request.contextPath}/signup" class="sing_href">Зарегистрируйтесь</a>, если вы впервые на нашем сайте.</small> </div>
             </div>
         </form>
-    </div> <br> <br> <br>
+    </div>
     <div class="left-background"> <br>
         <div class="left-img">
             <navbar:CarouselTag/>
-        </div> <br> <br> <br>
+        </div>
     </div>
 
 </div>
